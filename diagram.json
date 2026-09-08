@@ -1,0 +1,108 @@
+{
+  "version": 1,
+  "author": "Jonathan Gurr",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-pi-pico",
+      "id": "pico",
+      "top": 183.54,
+      "left": 67.92,
+      "rotate": 90,
+      "attrs": { "env": "arduino-community" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "buzzer",
+      "top": 208.42,
+      "left": 382.39,
+      "rotate": 90,
+      "attrs": { "volume": "0.2" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": 70,
+      "left": 0,
+      "rotate": 90,
+      "attrs": { "color": "red", "key": "1" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn2",
+      "top": 70,
+      "left": 50,
+      "rotate": 90,
+      "attrs": { "color": "orange", "key": "2" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn3",
+      "top": 70,
+      "left": 100,
+      "rotate": 90,
+      "attrs": { "color": "yellow", "key": "3" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn4",
+      "top": 70,
+      "left": 150,
+      "rotate": 90,
+      "attrs": { "color": "green", "key": "4" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn5",
+      "top": 70,
+      "left": 200,
+      "rotate": 90,
+      "attrs": { "color": "cyan", "key": "5" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn6",
+      "top": 70,
+      "left": 250,
+      "rotate": 90,
+      "attrs": { "color": "blue", "key": "6" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn7",
+      "top": 70,
+      "left": 300,
+      "rotate": 90,
+      "attrs": { "color": "purple", "key": "7" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn8",
+      "top": 70,
+      "left": 350,
+      "rotate": 90,
+      "attrs": { "color": "red", "key": "8" }
+    }
+  ],
+  "connections": [
+    [ "pico:GND.1", "buzzer:1", "black", [ "v-12", "*", "h-15" ] ],
+    [ "pico:GP12", "btn1:1.r", "red", [ "v-8", "*", "v46" ] ],
+    [ "pico:GND.1", "btn1:2.r", "black", [ "v-12", "*", "h6" ] ],
+    [ "pico:GP11", "btn2:1.r", "orange", [ "v-4", "*", "v40" ] ],
+    [ "pico:GND.1", "btn2:2.r", "black", [ "v-12", "*", "h6" ] ],
+    [ "pico:GP10", "btn3:1.r", "yellow", [ "v0", "*", "v28" ] ],
+    [ "pico:GND.1", "btn3:2.r", "black", [ "v-12", "*", "h-6" ] ],
+    [ "pico:GP9", "btn4:1.r", "green", [ "v-36", "*", "v20" ] ],
+    [ "pico:GND.1", "btn4:2.r", "black", [ "v-12", "*", "h-6" ] ],
+    [ "pico:GP8", "buzzer:2", "gold", [ "v-32", "*", "h-10" ] ],
+    [ "pico:GP7", "btn5:1.r", "cyan", [ "v-24", "*", "h0" ] ],
+    [ "pico:GND.1", "btn5:2.r", "black", [ "v-12", "*", "h-15", "v4" ] ],
+    [ "pico:GP6", "btn6:1.r", "blue", [ "v-24", "*", "h0" ] ],
+    [ "pico:GND.1", "btn6:2.r", "black", [ "v-12", "*", "h-10", "v4" ] ],
+    [ "pico:GP5", "btn7:1.r", "purple", [ "v-20", "*", "h0" ] ],
+    [ "pico:GND.1", "btn7:2.r", "black", [ "v-12", "*", "h-8", "v4" ] ],
+    [ "pico:GP4", "btn8:1.r", "red", [ "v-16", "*", "h0" ] ],
+    [ "pico:GND.1", "btn8:2.r", "black", [ "v-12", "*", "h-8", "v4" ] ]
+  ],
+  "dependencies": {}
+}
