@@ -1,12 +1,5 @@
 /**
-   Mini piano for the Raspberry Pi Pico.
-
-   You can control the colorful buttons with your keyboard:
-   After starting the simulation, click anywhere in the diagram to focus it.
-   Then press any key between 1 and 8 to play the piano (1 is the lowest note,
-   8 is the highest).
-
-   Copyright (C) 2021, Uri Shaked. Released under the MIT License.
+ Pux: Piano Multiplexer
 */
 
 #include "pitches.h"

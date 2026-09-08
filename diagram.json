@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "author": "Jonathan Gurr",
+  "author": "Uri Shaked",
   "editor": "wokwi",
   "parts": [
     {
@@ -82,6 +82,38 @@
       "left": 350,
       "rotate": 90,
       "attrs": { "color": "red", "key": "8" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "mbtn1",
+      "top": 375,
+      "left": -15,
+      "rotate": 90,
+      "attrs": { "color": "black", "key": "a" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "mbtn2",
+      "top": 375,
+      "left": 45,
+      "rotate": 90,
+      "attrs": { "color": "black", "key": "s" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "mbtn3",
+      "top": 375,
+      "left": 105,
+      "rotate": 90,
+      "attrs": { "color": "black", "key": "d" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "mbtn4",
+      "top": 375,
+      "left": 165,
+      "rotate": 90,
+      "attrs": { "color": "black", "key": "f" }
     }
   ],
   "connections": [
@@ -102,7 +134,17 @@
     [ "pico:GP5", "btn7:1.r", "purple", [ "v-20", "*", "h0" ] ],
     [ "pico:GND.1", "btn7:2.r", "black", [ "v-12", "*", "h-8", "v4" ] ],
     [ "pico:GP4", "btn8:1.r", "red", [ "v-16", "*", "h0" ] ],
-    [ "pico:GND.1", "btn8:2.r", "black", [ "v-12", "*", "h-8", "v4" ] ]
+    [ "pico:GND.1", "btn8:2.r", "black", [ "v-12", "*", "h-8", "v4" ] ],
+
+    [ "pico:GND.8", "mbtn1:2.l", "black", [ "v15", "*", "h-20", "v-5" ] ],
+    [ "pico:GP16", "mbtn1:1.l", "red", [ "v10", "*", "h-50", "v-10" ] ],
+    [ "pico:GND.8", "mbtn2:2.l", "black", [ "v15", "*", "h-20", "v-5" ] ],
+    [ "pico:GP17", "mbtn2:1.l", "red", [ "v10", "*", "h-35", "v-10" ] ],
+    [ "pico:GND.8", "mbtn3:2.l", "black", [ "v15", "*", "h-20", "v-5" ] ],
+    [ "pico:GP18", "mbtn3:1.l", "red", [ "v10", "*", "h-35", "v-10" ] ],
+    [ "pico:GND.8", "mbtn4:2.l", "black", [ "v15", "*", "h-20", "v-5" ] ],
+    [ "pico:GP19", "mbtn4:1.l", "red", [ "v10", "*", "h-35", "v-10" ] ]
+
   ],
   "dependencies": {}
 }
