@@ -14,7 +14,8 @@
 #include "pitches.h"
 
 #define SPEAKER_PIN 8
-#define LED_PIN 16
+#define MUX_PIN 16
+#define LED_PIN 20
 
 const uint8_t buttonPins[] = { 12, 11, 10, 9, 7, 6, 5, 4 };
 const int buttonTones[] = {
@@ -44,17 +45,38 @@ void stopTone(uint gpio) {
   pwm_set_enabled(slice, false);
 }
 
-int main() {
-  stdio_init_all();
+void initialize_function_buttons() {
   for(uint8_t i = 0; i < numTones; i++) {
     gpio_init(buttonPins[i]);
     gpio_set_dir(buttonPins[i], GPIO_IN);
     gpio_pull_up(buttonPins[i]);
   }
+  gpio_set_function(SPEAKER_PIN, GPIO_FUNC_PWM);
+}
+
+void initialize_mux_buttons() {
+  gpio_init(MUX_PIN);
+  gpio_set_dir(MUX_PIN, GPIO_IN);
+}
+
+void initialize_leds() {
   gpio_init(LED_PIN);
   gpio_set_dir(LED_PIN, GPIO_OUT);
-  gpio_set_function(SPEAKER_PIN, GPIO_FUNC_PWM);
+  gpio_pull_up(LED_PIN);
+}
+
+int main() {
+  stdio_init_all();
+  initialize_function_buttons();
+  initialize_mux_buttons();
   while(true) {
+    bool pressed = !gpio_get(MUX_PIN);
+    if(pressed) {
+      gpio_put(LED_PIN, 1);
+      sleep_ms(500);
+    } else {
+      gpio_put(LED_PIN, 0);
+    }
     int pitch = 0;
     for(uint8_t i = 0; i < numTones; i++) {
       if(!gpio_get(buttonPins[i])) {
