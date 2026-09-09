@@ -9,7 +9,8 @@
       "top": 183.54,
       "left": 67.92,
       "rotate": 90,
-      "attrs": { "env": "arduino-community" }
+      "hide": false,
+      "attrs": { "builder": "pico-sdk" }
     },
     {
       "type": "wokwi-buzzer",
