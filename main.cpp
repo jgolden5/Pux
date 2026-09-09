@@ -14,6 +14,7 @@
 #include "pitches.h"
 
 #define SPEAKER_PIN 8
+#define LED_PIN 16
 
 const uint8_t buttonPins[] = { 12, 11, 10, 9, 7, 6, 5, 4 };
 const int buttonTones[] = {
@@ -50,6 +51,8 @@ int main() {
     gpio_set_dir(buttonPins[i], GPIO_IN);
     gpio_pull_up(buttonPins[i]);
   }
+  gpio_init(LED_PIN);
+  gpio_set_dir(LED_PIN, GPIO_OUT);
   gpio_set_function(SPEAKER_PIN, GPIO_FUNC_PWM);
   while(true) {
     int pitch = 0;
