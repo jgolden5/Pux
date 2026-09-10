@@ -12,17 +12,18 @@
 #include "pico/stdlib.h"
 #include "hardware/pwm.h"
 #include "pitches.h"
+#include "mux.h"
 
 #define SPEAKER_PIN 8
 #define MUX_PIN 16
 #define LED_PIN 20
 
-const uint8_t buttonPins[] = { 12, 11, 10, 9, 7, 6, 5, 4 };
+const uint8_t pianoButtonPins[] = { 12, 11, 10, 9, 7, 6, 5, 4 };
 const int buttonTones[] = {
   NOTE_C4, NOTE_D4, NOTE_E4, NOTE_F4,
   NOTE_G4, NOTE_A4, NOTE_B4, NOTE_C5 
 };
-const int numTones = sizeof(buttonPins) / sizeof(buttonPins[0]);
+const int numTones = sizeof(pianoButtonPins) / sizeof(pianoButtonPins[0]);
 
 void playTone(uint gpio, uint frequency) {
   uint slice = pwm_gpio_to_slice_num(gpio);
@@ -45,11 +46,11 @@ void stopTone(uint gpio) {
   pwm_set_enabled(slice, false);
 }
 
-void initialize_function_buttons() {
+void initialize_piano_buttons() {
   for(uint8_t i = 0; i < numTones; i++) {
-    gpio_init(buttonPins[i]);
-    gpio_set_dir(buttonPins[i], GPIO_IN);
-    gpio_pull_up(buttonPins[i]);
+    gpio_init(pianoButtonPins[i]);
+    gpio_set_dir(pianoButtonPins[i], GPIO_IN);
+    gpio_pull_up(pianoButtonPins[i]);
   }
   gpio_set_function(SPEAKER_PIN, GPIO_FUNC_PWM);
 }
@@ -57,29 +58,31 @@ void initialize_function_buttons() {
 void initialize_mux_buttons() {
   gpio_init(MUX_PIN);
   gpio_set_dir(MUX_PIN, GPIO_IN);
+  gpio_pull_up(MUX_PIN);
 }
 
 void initialize_leds() {
   gpio_init(LED_PIN);
   gpio_set_dir(LED_PIN, GPIO_OUT);
-  gpio_pull_up(LED_PIN);
+  gpio_put(LED_PIN, 0);
 }
 
 int main() {
   stdio_init_all();
-  initialize_function_buttons();
+  initialize_piano_buttons();
   initialize_mux_buttons();
+  Mux mux = Mux();
+  initialize_leds();
   while(true) {
     bool pressed = !gpio_get(MUX_PIN);
     if(pressed) {
       gpio_put(LED_PIN, 1);
-      sleep_ms(500);
     } else {
       gpio_put(LED_PIN, 0);
     }
     int pitch = 0;
     for(uint8_t i = 0; i < numTones; i++) {
-      if(!gpio_get(buttonPins[i])) {
+      if(!gpio_get(pianoButtonPins[i])) {
         pitch = buttonTones[i];
       }
     }
